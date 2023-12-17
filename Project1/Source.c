@@ -1,9 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#define Size 11
 
-void find(char maze[][11], int start[]) //找起點(一律在右邊)放入start[2]={X,Y} 
+void find(char maze[][Size], int start[]) //找起點(一律在右邊)放入start[2]={X,Y} 
 {
-	for (int i = 0; i < 11; i++)
+	for (int i = 0; i < Size; i++)
 	{
 		if (maze[i][0] == '.')
 		{
@@ -13,10 +14,10 @@ void find(char maze[][11], int start[]) //找起點(一律在右邊)放入start[2]={X,Y}
 		}
 	}
 }
-int findend(char maze[][11], int start[], int x, int y, int dir) //有終點return 1 反之為0
+int findend(char maze[][Size], int start[], int x, int y, int dir) //有終點return 1 反之為0
 {
 	maze[y][x] = 'X';
-	if (maze[y][10] == 'X' && x == 10) //終點一律在左(結束條件)
+	if (maze[y][Size-1] == 'X' && x == Size-1) //終點一律在左(結束條件)
 		return 1;
 
 	int checkrighty[4] = { 1,0,-1,0 };
@@ -43,11 +44,11 @@ int findend(char maze[][11], int start[], int x, int y, int dir) //有終點return 
 	findend(maze, start, x, y, dir);
 }
 
-void print(char maze[][11])
+void print(char maze[][Size])
 {
-	for (int i = 0; i < 11; i++)
+	for (int i = 0; i < Size; i++)
 	{
-		for (int j = 0; j < 11; j++)
+		for (int j = 0; j < Size; j++)
 		{
 			printf("%c", maze[i][j]);
 		}
@@ -63,10 +64,10 @@ int main()
 		printf("error");
 		return 0;
 	}
-	char maze[11][11];
-	for (int i = 0; i < 11; i++) //input
+	char maze[Size][Size];
+	for (int i = 0; i < Size; i++) //input
 	{
-		for (int j = 0; j < 11; j++)
+		for (int j = 0; j < Size; j++)
 		{
 			maze[i][j] = fgetc(Input);//讀每行字
 		}
